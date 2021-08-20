@@ -28,7 +28,7 @@ namespace FaceFixer
         }
         public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
-            if (Settings.Value.TargetMods.Count == 0)
+            if (Settings.Value.ModsCibles.Count == 0)
             {
                 System.Console.WriteLine("Must at least specify one target mod in order to do anything.");
                 return;
@@ -38,7 +38,7 @@ namespace FaceFixer
                 .Select(listing => listing.Mod)
                 .NotNull()
                 .Select(x => (x.ModKey, x.Npcs))
-                .Where(x => x.Npcs.Count > 0 && Settings.Value.TargetMods.Contains(x.ModKey))
+                .Where(x => x.Npcs.Count > 0 && Settings.Value.ModsCibles.Contains(x.ModKey))
                 .ToArray();
 
             if (Settings.Value.PrioriseParLOrdreSpecifie)
@@ -46,7 +46,7 @@ namespace FaceFixer
                 npcGroups = npcGroups
                     .OrderBy(
                         x => x.ModKey,
-                        Comparer<ModKey>.Create((x, y) => Settings.Value.TargetMods.IndexOf(x).CompareTo(Settings.Value.TargetMods.IndexOf(y))))
+                        Comparer<ModKey>.Create((x, y) => Settings.Value.ModsCibles.IndexOf(x).CompareTo(Settings.Value.ModsCibles.IndexOf(y))))
                     .ToArray();
             }
 
