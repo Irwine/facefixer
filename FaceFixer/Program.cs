@@ -41,7 +41,7 @@ namespace FaceFixer
                 .Where(x => x.Npcs.Count > 0 && Settings.Value.TargetMods.Contains(x.ModKey))
                 .ToArray();
 
-            if (Settings.Value.PrioritizeBySpecifiedOrder)
+            if (Settings.Value.PrioriseParLOrdreSpecifie)
             {
                 npcGroups = npcGroups
                     .OrderBy(
@@ -71,20 +71,20 @@ namespace FaceFixer
                     var modifiedNpc = state.PatchMod.Npcs.GetOrAddAsOverride(npc);
                     modifiedNpc.DeepCopyIn(sourceNpc, new Npc.TranslationMask(false)
                     {
-                        AttackRace = Settings.Value.PatchAttackRace,
-                        DefaultOutfit = Settings.Value.PatchDefaultOutfit,
-                        FaceMorph = Settings.Value.PatchFaceMorph,
-                        FaceParts = Settings.Value.PatchFaceParts,
-                        FarAwayModel = Settings.Value.PatchFarAwayModel,
-                        HairColor = Settings.Value.PatchHairColor,
-                        HeadParts = Settings.Value.PatchHeadParts,
-                        HeadTexture = Settings.Value.PatchHeadTexture,
-                        Height = Settings.Value.PatchHeight,
-                        SleepingOutfit = Settings.Value.PatchSleepingOutfit,
-                        TextureLighting = Settings.Value.PatchTextureLighting,
-                        TintLayers = Settings.Value.PatchTintLayers,
-                        Weight = Settings.Value.PatchWeight,
-                        WornArmor = Settings.Value.PatchWornArmor,
+                        AttackRace = Settings.Value.AttaqueRaciale,
+                        DefaultOutfit = Settings.Value.TenueParDefaut,
+                        FaceMorph = Settings.Value.MorphologieDuVisage,
+                        FaceParts = Settings.Value.PartiesDuVisage,
+                        FarAwayModel = Settings.Value.ModeleDistant,
+                        HairColor = Settings.Value.CouleurDeCheveux,
+                        HeadParts = Settings.Value.PartiesDeLaTete,
+                        HeadTexture = Settings.Value.TextureDeLeTete,
+                        Height = Settings.Value.Taille,
+                        SleepingOutfit = Settings.Value.TenueDeNuit,
+                        TextureLighting = Settings.Value.EclairageTexture,
+                        TintLayers = Settings.Value.Couches,
+                        Weight = Settings.Value.Poids,
+                        WornArmor = Settings.Value.ArmurePortee,
 
                     });
                     count++;
