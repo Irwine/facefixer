@@ -2,7 +2,7 @@ using Mutagen.Bethesda;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Mutagen.Bethesda.Plugins;
+
 namespace FaceFixer
 {
     public record Settings
