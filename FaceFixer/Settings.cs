@@ -7,7 +7,7 @@ namespace FaceFixer
 {
     public record Settings
     {
-        public List<ModKey> TargetMods = new List<ModKey>();
+        public List<ModKey> ModsCibles = new List<ModKey>();
         public bool PrioriseParLOrdreSpecifie = false;
         public bool AttaqueRaciale = true;
         public bool TenueParDefaut = false;
