@@ -1,4 +1,4 @@
-# facefixer
+# face fixer
 Patcher corrigeant les visages des pnjs
 
 ## Version à utiliser
