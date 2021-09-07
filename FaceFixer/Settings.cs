@@ -56,6 +56,6 @@ namespace FaceFixer
         public bool PatchWeight = true;
         
         [SettingName("Armure portée")]
-        public bool ArmurePortee = true;
+        public bool PatchWornArmor = true;
     }
 }
