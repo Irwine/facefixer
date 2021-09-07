@@ -29,7 +29,7 @@ namespace FaceFixer
         }
         public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
-            if (Settings.Value.ModsCibles.Count == 0)
+            if (Settings.Value.TargetMods.Count == 0)
             {
                 System.Console.WriteLine("Must at least specify one target mod in order to do anything.");
                 return;
@@ -39,15 +39,15 @@ namespace FaceFixer
                 .Select(listing => listing.Mod)
                 .NotNull()
                 .Select(x => (x.ModKey, x.Npcs))
-                .Where(x => x.Npcs.Count > 0 && Settings.Value.ModsCibles.Contains(x.ModKey))
+                .Where(x => x.Npcs.Count > 0 && Settings.Value.TargetMods.Contains(x.ModKey))
                 .ToArray();
 
-            if (Settings.Value.PrioriseParLOrdreSpecifie)
+            if (Settings.Value.PrioritizeBySpecifiedOrder)
             {
                 npcGroups = npcGroups
                     .OrderBy(
                         x => x.ModKey,
-                        Comparer<ModKey>.Create((x, y) => Settings.Value.ModsCibles.IndexOf(x).CompareTo(Settings.Value.ModsCibles.IndexOf(y))))
+                        Comparer<ModKey>.Create((x, y) => Settings.Value.TargetMods.IndexOf(x).CompareTo(Settings.Value.TargetMods.IndexOf(y))))
                     .ToArray();
             }
 
@@ -72,20 +72,20 @@ namespace FaceFixer
                     var modifiedNpc = state.PatchMod.Npcs.GetOrAddAsOverride(npc);
                     modifiedNpc.DeepCopyIn(sourceNpc, new Npc.TranslationMask(false)
                     {
-                        AttackRace = Settings.Value.AttaqueRaciale,
-                        DefaultOutfit = Settings.Value.TenueParDefaut,
-                        FaceMorph = Settings.Value.MorphologieDuVisage,
-                        FaceParts = Settings.Value.PartiesDuVisage,
-                        FarAwayModel = Settings.Value.ModeleDistant,
-                        HairColor = Settings.Value.CouleurDeCheveux,
-                        HeadParts = Settings.Value.PartiesDeLaTete,
-                        HeadTexture = Settings.Value.TextureDeLeTete,
-                        Height = Settings.Value.Taille,
-                        SleepingOutfit = Settings.Value.TenueDeNuit,
-                        TextureLighting = Settings.Value.EclairageTexture,
-                        TintLayers = Settings.Value.Couches,
-                        Weight = Settings.Value.Poids,
-                        WornArmor = Settings.Value.ArmurePortee,
+                        AttackRace = Settings.Value.PatchAttackRace,
+                        DefaultOutfit = Settings.Value.PatchDefaultOutfit,
+                        FaceMorph = Settings.Value.PatchFaceMorph,
+                        FaceParts = Settings.Value.PatchFaceParts,
+                        FarAwayModel = Settings.Value.PatchFarAwayModel,
+                        HairColor = Settings.Value.PatchHairColor,
+                        HeadParts = Settings.Value.PatchHeadParts,
+                        HeadTexture = Settings.Value.PatchHeadTexture,
+                        Height = Settings.Value.PatchHeight,
+                        SleepingOutfit = Settings.Value.PatchSleepingOutfit,
+                        TextureLighting = Settings.Value.PatchTextureLighting,
+                        TintLayers = Settings.Value.PatchTintLayers,
+                        Weight = Settings.Value.PatchWeight,
+                        WornArmor = Settings.Value.PatchWornArmor,
 
                     });
                     count++;
