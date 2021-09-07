@@ -1,4 +1,5 @@
 using Mutagen.Bethesda;
+using System.Linq;
 using Mutagen.Bethesda.WPF.Reflection.Attributes;
 using System;
 using System.Collections.Generic;
